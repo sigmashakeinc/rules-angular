@@ -14,7 +14,7 @@ rule angular-tabnabbing-vulnerability {
   enabled true
   priority 70
   severity warning
-  ASK write
+  LOG write
   IF path GLOB "**/*.html" AND content CONTAINS "target=\"_blank\""
   MESSAGE "Links with `target=\"_blank\"` can expose the user to a 'tabnabbing' vulnerability, where the newly opened page can manipulate the `window.opener` object of the original page. To prevent this, always include `rel=\"noopener noreferrer\"` (or at least `rel=\"noopener\"`) in the anchor tag. This prevents the new page from accessing the `window.opener` property."
 }
@@ -50,7 +50,7 @@ rule angular-style-guide-avoid-var-keyword {
   enabled true
   priority 60
   severity warning
-  ASK write
+  LOG write
   IF path GLOB "**/*.ts" AND content CONTAINS "var "
   MESSAGE "The `var` keyword has function-level scope and can lead to unexpected behavior, variable hoisting issues, and make code harder to reason about. The Angular Style Guide and modern JavaScript best practices recommend using `let` for block-scoped mutable variables and `const` for block-scoped immutable variables instead. Replace `var` with `let` or `const` for improved code clarity and reduced potential for bugs."
 }
